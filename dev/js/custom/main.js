@@ -13,10 +13,10 @@
         pause: false
     };
 
-    $video.on('canplay', this.init.bind(_this));
-    $video.on('playing', this.playing.bind(_this));
-    $video.on('pause', this.paused.bind(_this));
-    $video.on('ended', this.paused.bind(_this));
+    $video.on('canplay', this.init.bind(this));
+    $video.on('playing', this.playing.bind(this));
+    $video.on('pause', this.paused.bind(this));
+    $video.on('ended', this.paused.bind(this));
 };
 
 VideoLabel.prototype = {
@@ -25,7 +25,7 @@ VideoLabel.prototype = {
         var _this = this;
         this.duration = this.video.duration;
 
-        this.interval = setInterval(_this.update.bind(this), this.speed);
+        this.interval = setInterval(this.update.bind(this), this.speed);
     },
 
     addLabel: function(time, callback, options) {
@@ -56,7 +56,7 @@ VideoLabel.prototype = {
 
         } else if (type === 'string') {
 
-            var label = $.grep(_this.labels, function(e){ return e.options.name == id; });
+            var label = $.grep(this.labels, function(e){ return e.options.name == id; });
 
             if(!label.length) {
                 console.log('getLabel() - no label found for id ' + id);
@@ -89,7 +89,7 @@ VideoLabel.prototype = {
 
         } else if (type === 'string') {
 
-            var label = $.grep(_this.labels, function(e){ return e.options.name == id; });
+            var label = $.grep(this.labels, function(e){ return e.options.name == id; });
 
             if(label === undefined) {
                 console.log('playFrom() - no label found for id ' + id);
@@ -143,7 +143,7 @@ VideoLabel.prototype = {
 
             this.seekLabels();
         } else {
-            clearInterval(_this.interval);
+            clearInterval(this.interval);
             this.interval = 0;
         }
     }
