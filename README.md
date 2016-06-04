@@ -3,20 +3,28 @@ Call functions at a specific time during a video
 
 ## Usage
 Include jQuery and VideoLabel
-    ```<script src="videoLabel.js"></script>``
+```html
+<script src="videoLabel.js"></script>
+```
 
 Init VideoLabel
-    ```var videoLabel = new videoLabel( element );```
+```javascript
+var videoLabel = new videoLabel( element );
+```
 
 ## Options
 ### name
 Add a name to your label
-    ```videoLabel.addLabel( 2, myFunction, { name: 'myLabel' } );```
+```javascript
+videoLabel.addLabel( 2, myFunction, { name: 'myLabel' } );
+```
 default: `null`
 
 ### pause
 Pause the video when you reach the label
-    ```videoLabel.addLabel( 2, myFunction, { pause: true } );```
+```javascript
+videoLabel.addLabel( 2, myFunction, { pause: true } );
+```
 default: `false`
 
 ## Methods
