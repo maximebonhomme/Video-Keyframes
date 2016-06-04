@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width" />
+
+        <title>Video Label</title>
+
+        <style>
+            body {
+                margin: 0;
+            }
+
+            video {
+                width: 700px;
+                margin: 100px auto;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+
+
+        <video controls>
+            <source src="videos/video.mp4" type="video/mp4">
+            <source src="videos/video.webm" type="video/webm">
+            Your browser does not support the <code>video</code> element.
+        </video>
+
+        <script src="js/_vendors/jquery-2.0.min.js"></script>
+        <script src="js/custom/main.js"></script>
+        <script>
+            (function($) {
+                'use strict';
+
+                var video = new videoLabel( $('video') );
+
+                video.addLabel(2.4, noPause, {
+                    name: 'noPause',
+                    pause: false
+                });
+
+                video.addLabel(4, pause, {
+                    name: 'pause',
+                    pause: true
+                });
+
+                function noPause() {
+                    console.log('no pause bb');
+                }
+
+                function pause() {
+                    console.log('pause that shit');
+                }
+
+            })(jQuery);
+        </script>
+    </body>
+</html>
