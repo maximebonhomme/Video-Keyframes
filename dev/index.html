@@ -34,24 +34,21 @@
             (function($) {
                 'use strict';
 
-                var video = new videoLabel( $('video') );
+                var videoLabel = new VideoLabel( $('video') );
 
-                video.addLabel(2.4, noPause, {
-                    name: 'noPause',
-                    pause: false
-                });
-
-                video.addLabel(4, pause, {
-                    name: 'pause',
+                videoLabel.addLabel(4, pause, {
+                    name: 'label',
                     pause: true
                 });
 
-                function noPause() {
-                    console.log('no pause bb');
-                }
+                function pause () {
+                    var label = videoLabel.getLabel(0);
+                    console.log(label);
 
-                function pause() {
-                    console.log('pause that shit');
+                    setTimeout(function(){
+                        videoLabel.playFrom( 'label' );
+                    }, 2000);
+
                 }
 
             })(jQuery);
