@@ -1,0 +1,16 @@
+{
+  "name": "bonhomme-build",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.11.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-browser-sync": "^1.5.3",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}
