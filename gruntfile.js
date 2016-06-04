@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                 src: [
                     grunt.settings.devDir + 'js/custom/main.js'
                 ],
-                dest: grunt.settings.distDir + 'js/videoLabel.js'
+                dest: 'videoLabel.js'
             }
         },
         uglify: {
@@ -42,8 +42,8 @@ module.exports = function(grunt) {
                 mangle: false
             },
             dist: {
-                src: grunt.settings.distDir + 'js/videoLabel.js',
-                dest: grunt.settings.distDir + 'js/videoLabel.min.js'
+                src: 'videoLabel.js',
+                dest: 'videoLabel.min.js'
             }
         }
     });
