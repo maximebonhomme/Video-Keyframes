@@ -118,24 +118,29 @@ VideoLabel.prototype = {
             var options = this.options;
 
             if(time === _this.currentTime && !_this.calling) {
+                _this.calling = true;
+                callback();
+
                 if(options.pause) {
                     _this.video.pause();
+                } else {
+                    setTimeout(function(){
+                        _this.calling = false;
+                    }, 50);
                 }
-
-                callback();
-                _this.calling = true;
-
-                setTimeout(function(){
-                    _this.calling = false;
-                }, 50);
             }
         });
 
     },
 
     playing: function() {
+        var _this = this;
         this.isPlaying = true;
         this.interval = setInterval(this.update.bind(this), this.speed);
+
+        setTimeout(function() {
+            _this.calling = false;
+        }, 50);
     },
 
     paused: function() {
