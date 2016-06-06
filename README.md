@@ -4,12 +4,13 @@ Call functions at a specific time during a video
 ## Usage
 Include jQuery and VideoKeyframe
 ```html
+<script src="jquery.js"></script>
 <script src="videoKeyframe.js"></script>
 ```
 
 Init VideoKeyframe
 ```javascript
-var videoKeyframe = new videoKeyframe( element );
+var videoKeyframe = new VideoKeyframe( element );
 ```
 
 ## Methods
