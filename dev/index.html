@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width" />
 
-        <title>Video Label</title>
+        <title>Video Keyframe</title>
 
         <style>
             body {
@@ -34,19 +34,19 @@
             (function($) {
                 'use strict';
 
-                var videoLabel = new VideoLabel( $('video') );
+                var videoKeyframe = new VideoKeyframe( $('video') );
 
-                videoLabel.addLabel(4, pause, {
+                videoKeyframe.addLabel(4, pause, {
                     name: 'label',
                     pause: true
                 });
 
                 function pause () {
-                    var label = videoLabel.getLabel(0);
+                    var label = videoKeyframe.getLabel(0);
                     console.log(label);
 
                     setTimeout(function(){
-                        videoLabel.playFrom( 'label' );
+                        videoKeyframe.playFrom( 'label' );
                     }, 2000);
 
                 }

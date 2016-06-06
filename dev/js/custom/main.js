@@ -1,4 +1,4 @@
-;var VideoLabel = function($video) {
+;var VideoKeyframe = function($video) {
     this.video = $video[0];
     this.duration = 0;
     this.currentTime = 0;
@@ -19,7 +19,7 @@
     $video.on('ended', this.paused.bind(this));
 };
 
-VideoLabel.prototype = {
+VideoKeyframe.prototype = {
 
     init: function() {
         this.duration = this.video.duration;

@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
     grunt.settings = {
-        name: 'bonhomme-build',
+        name: 'videKeyframe',
         distDir: 'dist/',
         devDir: 'dev/',
         fileExt: '.html'
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                 src: [
                     grunt.settings.devDir + 'js/custom/main.js'
                 ],
-                dest: 'videoLabel.js'
+                dest: 'videoKeyframe.js'
             }
         },
         uglify: {
@@ -42,8 +42,8 @@ module.exports = function(grunt) {
                 mangle: false
             },
             dist: {
-                src: 'videoLabel.js',
-                dest: 'videoLabel.min.js'
+                src: 'videoKeyframe.js',
+                dest: 'videoKeyframe.min.js'
             }
         }
     });

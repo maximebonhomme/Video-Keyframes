@@ -1,5 +1,4 @@
-;var VideoLabel = function($video) {
-    var _this = this;
+;var VideoKeyframe = function($video) {
     this.video = $video[0];
     this.duration = 0;
     this.currentTime = 0;
@@ -7,6 +6,7 @@
     this.labels = [];
     this.interval = 0;
     this.speed = 50;
+    this.calling = false;
 
     this.settings = {
         name: null,
@@ -19,10 +19,9 @@
     $video.on('ended', this.paused.bind(this));
 };
 
-VideoLabel.prototype = {
+VideoKeyframe.prototype = {
 
     init: function() {
-        var _this = this;
         this.duration = this.video.duration;
 
         this.interval = setInterval(this.update.bind(this), this.speed);
@@ -43,8 +42,7 @@ VideoLabel.prototype = {
 
     getLabel: function(id) {
         var type = typeof id;
-        var _this = this;
-        
+
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
@@ -75,8 +73,7 @@ VideoLabel.prototype = {
 
     playFrom: function(id) {
         var type = typeof id;
-        var _this = this;
-        
+
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
@@ -112,23 +109,34 @@ VideoLabel.prototype = {
         var _this = this;
         
         $.each(this.labels, function() {
-            var time = this.time;
+            var time = parseFloat(this.time.toFixed(1));
             var callback = this.callback;
             var options = this.options;
 
-            if(time === _this.currentTime) {
+            if(time === _this.currentTime && !_this.calling) {
+                _this.calling = true;
+                callback();
+
                 if(options.pause) {
                     _this.video.pause();
+                } else {
+                    setTimeout(function(){
+                        _this.calling = false;
+                    }, 50);
                 }
-                callback();
             }
         });
 
     },
 
     playing: function() {
+        var _this = this;
         this.isPlaying = true;
         this.interval = setInterval(this.update.bind(this), this.speed);
+
+        setTimeout(function() {
+            _this.calling = false;
+        }, 50);
     },
 
     paused: function() {
@@ -136,8 +144,6 @@ VideoLabel.prototype = {
     },
 
     update: function() {
-        var _this = this;
-
         if(this.isPlaying) {
             this.currentTime = parseFloat(this.video.currentTime.toFixed(1));
 
