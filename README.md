@@ -8,14 +8,14 @@ Include jQuery and VideoKeyframe
 <script src="videoKeyframe.js"></script>
 ```
 
-Init VideoKeyframe
+Init VideoKeyframe on your HTML5 video element
 ```javascript
 var videoKeyframe = new VideoKeyframe( element );
 ```
 
 ## Methods
 ### addLabel()
-adds a label in the video timeline
+adds a label in the timeline
 - time: `int` time in the video where you want to put the label
 - callback: `func` function to be called at that point
 - options (optional)
