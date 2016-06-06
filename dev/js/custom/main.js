@@ -7,6 +7,7 @@
     this.labels = [];
     this.interval = 0;
     this.speed = 50;
+    this.calling = false;
 
     this.settings = {
         name: null,
@@ -112,15 +113,21 @@ VideoLabel.prototype = {
         var _this = this;
         
         $.each(this.labels, function() {
-            var time = this.time;
+            var time = parseFloat(this.time.toFixed(1));
             var callback = this.callback;
             var options = this.options;
 
-            if(time === _this.currentTime) {
+            if(time === _this.currentTime && !_this.calling) {
                 if(options.pause) {
                     _this.video.pause();
                 }
+
                 callback();
+                _this.calling = true;
+
+                setTimeout(function(){
+                    _this.calling = false;
+                }, 50);
             }
         });
 
