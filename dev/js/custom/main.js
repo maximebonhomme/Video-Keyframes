@@ -1,5 +1,4 @@
 ;var VideoLabel = function($video) {
-    var _this = this;
     this.video = $video[0];
     this.duration = 0;
     this.currentTime = 0;
@@ -23,7 +22,6 @@
 VideoLabel.prototype = {
 
     init: function() {
-        var _this = this;
         this.duration = this.video.duration;
 
         this.interval = setInterval(this.update.bind(this), this.speed);
@@ -44,8 +42,7 @@ VideoLabel.prototype = {
 
     getLabel: function(id) {
         var type = typeof id;
-        var _this = this;
-        
+
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
@@ -76,8 +73,7 @@ VideoLabel.prototype = {
 
     playFrom: function(id) {
         var type = typeof id;
-        var _this = this;
-        
+
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
@@ -148,8 +144,6 @@ VideoLabel.prototype = {
     },
 
     update: function() {
-        var _this = this;
-
         if(this.isPlaying) {
             this.currentTime = parseFloat(this.video.currentTime.toFixed(1));
 
