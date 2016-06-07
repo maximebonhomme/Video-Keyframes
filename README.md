@@ -1,5 +1,5 @@
 # Video-Keyframe
-Call functions at a specific time during a video
+Call functions at a specific time during a HTML5 video
 
 ## Usage
 Include jQuery and VideoKeyframe
