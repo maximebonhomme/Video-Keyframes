@@ -40,6 +40,28 @@ VideoKeyframe.prototype = {
         this.labels.push(label);
     },
 
+    addLabelFromEnd: function(time, callback, options) {
+        var _this = this;
+        var opts = $.extend( {}, this.settings, options );
+        var duration = this.duration;
+        var label;
+
+        if(time > duration) {
+            console.log('time cannot be greater than video duration');
+            return;
+        }
+
+        label = {
+            time: duration - time,
+            callback: callback,
+            options: opts
+        }
+
+        if(time === undefined || callback === undefined) return;
+
+        this.labels.push(label);
+    },
+
     getLabel: function(id) {
         var type = typeof id;
 
