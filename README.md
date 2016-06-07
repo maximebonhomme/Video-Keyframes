@@ -32,7 +32,7 @@ adds a label in the timeline
 - options (optional)
 
 ### addLabelFromEnd()
-adds a label in the timeline from the end
+adds a label from the end of the timeline
 - time: `int` time from the end where you want to put the label
 - callback: `func` function to be called at that point
 - options (optional)
