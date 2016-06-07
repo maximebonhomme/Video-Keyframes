@@ -13,6 +13,17 @@ Init VideoKeyframe on your HTML5 video element
 var videoKeyframe = new VideoKeyframe( element );
 ```
 
+Wait until the video can play to add labels
+```javascript
+function addLabels () {
+    videoKeyframe.addLabel(4, pause, {
+        name: 'label',
+        pause: true
+    });
+}
+$('video').on('canplay', addLabels);
+```
+
 ## Methods
 ### addLabel()
 adds a label in the timeline
@@ -45,23 +56,27 @@ default: `false`
 
 ## Example
 ```javascript
+    var $video = $('video');
     // init videoKeyframe
-    var videoKeyframe = new VideoKeyframe( $('video') );
+    var videoKeyframe = new VideoKeyframe( $video);
 
-    // add a label at 4sec that will call pause()
-    // name it label and pause the video once it reaches it
-    videoKeyframe.addLabel(4, pause, {
-        name: 'label',
-        pause: true
-    });
+    $video.on('canplay', addLabels);
+
+    function addLabels () {
+        // add a label at 4sec that will call pause()
+        // name it label and pause the video once it reaches it
+        videoKeyframe.addLabel(4, pause, {
+            name: 'label',
+            pause: true
+        });
+    }
 
     function pause () {
-        // get the first label object
         var label = videoKeyframe.getLabel(0);
         console.log(label);
 
-        // play video after 2sec
         setTimeout(function(){
+            // resume video after 2sec
             videoKeyframe.playFrom( 'label' );
         }, 2000);
 
