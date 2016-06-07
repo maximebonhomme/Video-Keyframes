@@ -35,7 +35,10 @@ VideoKeyframe.prototype = {
             options: opts
         }
 
-        if(time === undefined || callback === undefined) return;
+        if(time > this.duration) {
+            console.error('time cannot be greater than duration');
+            return;
+        }
 
         this.labels.push(label);
     },
@@ -43,16 +46,15 @@ VideoKeyframe.prototype = {
     addLabelFromEnd: function(time, callback, options) {
         var _this = this;
         var opts = $.extend( {}, this.settings, options );
-        var duration = this.duration;
         var label;
 
-        if(time > duration) {
-            console.log('time cannot be greater than video duration');
+        if(time > this.duration) {
+            console.error('time cannot be greater than duration');
             return;
         }
 
         label = {
-            time: duration - time,
+            time: this.duration - time,
             callback: callback,
             options: opts
         }
@@ -68,7 +70,7 @@ VideoKeyframe.prototype = {
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
-                console.log('getLabel() - no label found for id ' + id);
+                console.error('no label found for id ' + id);
                 return;
             } else {
                 return this.labels[id];
@@ -79,7 +81,7 @@ VideoKeyframe.prototype = {
             var label = $.grep(this.labels, function(e){ return e.options.name == id; });
 
             if(!label.length) {
-                console.log('getLabel() - no label found for id ' + id);
+                console.error('no label found for id ' + id);
                 return;
             } else {
                 return label[0];
@@ -87,7 +89,7 @@ VideoKeyframe.prototype = {
 
         } else {
 
-            console.log('getLabel() - int or string only');
+            console.error('int or string only');
             return;
 
         }
@@ -99,10 +101,10 @@ VideoKeyframe.prototype = {
         if(type === 'number') {
 
             if(this.labels[id] === undefined) {
-                console.log('playFrom() - no label found for id ' + id);
+                console.error('no label found for id ' + id);
                 return;
             } else {
-                console.log(this.labels[id]);
+                console.error(this.labels[id]);
                 this.currentTime = this.labels[id].time;
             }
 
@@ -111,7 +113,7 @@ VideoKeyframe.prototype = {
             var label = $.grep(this.labels, function(e){ return e.options.name == id; });
 
             if(label === undefined) {
-                console.log('playFrom() - no label found for id ' + id);
+                console.error('no label found for id ' + id);
                 return;
             } else {
                 this.currentTime = label[0].time;
@@ -119,7 +121,7 @@ VideoKeyframe.prototype = {
 
         } else {
 
-            console.log('playFrom() - int or string only');
+            console.error('int or string only');
             return;
 
         }
