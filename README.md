@@ -31,6 +31,12 @@ adds a label in the timeline
 - callback: `func` function to be called at that point
 - options (optional)
 
+### addLabelFromEnd()
+adds a label in the timeline from the end
+- time: `int` time from the end where you want to put the label
+- callback: `func` function to be called at that point
+- options (optional)
+
 ### getLabel()
 returns label object
 - label: `int` id of the label in the array or `string` label name
