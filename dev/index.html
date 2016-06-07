@@ -34,12 +34,17 @@
             (function($) {
                 'use strict';
 
-                var videoKeyframe = new VideoKeyframe( $('video') );
+                var $video = $('video');
+                var videoKeyframe = new VideoKeyframe( $video);
 
-                videoKeyframe.addLabel(4, pause, {
-                    name: 'label',
-                    pause: true
-                });
+                $video.on('canplay', addLabels);
+
+                function addLabels () {
+                    videoKeyframe.addLabel(4, pause, {
+                        name: 'label',
+                        pause: true
+                    });
+                }
 
                 function pause () {
                     var label = videoKeyframe.getLabel(0);
