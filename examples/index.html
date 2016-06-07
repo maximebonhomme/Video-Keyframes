@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width" />
+
+        <title>Video Keyframe</title>
+
+        <style>
+            body {
+                margin: 0;
+                color: white;
+                font-family: sans-serif;
+            }
+
+            .main-container {
+                box-sizing: border-box;
+                padding: 0 40px;
+                width: 100%;
+                max-width: 800px;
+                margin: 100px auto;
+            }
+
+            .video-holder {
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+            }
+
+            .video-holder .inner,
+            .video-holder video {
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .video-holder .inner {
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            .video-keyframe {
+                box-sizing: border-box;
+                padding: 20px;
+                height: 100%;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.2s;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            .video-keyframe--center {
+                align-items: center;
+            }
+
+            .video-keyframe span {
+                display: inline-block;
+                font-size: 34px;
+                transform: translateY(20px);
+                opacity: 0;
+                transition: 0.3s ease-out;
+            }
+
+            .video-keyframe.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .video-keyframe.show span {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="main-container">
+
+            <div class="video-holder">
+                <div class="inner">
+                    <div class="video-keyframe" data-keyframe="0">
+                        <span>Add keyframes</span>
+                        <span>Everywhere</span>
+                    </div>
+
+                    <div class="video-keyframe" data-keyframe="1">
+                        <span>Add annoying modals</span>
+                        <span>and pause the video</span>
+                    </div>
+                </div>
+
+                <video controls>
+                    <source src="videos/video.mp4" type="video/mp4">
+                    <source src="videos/video.webm" type="video/webm">
+                </video>
+            </div>
+
+        </div>
+
+        <script src="../dev/js/_vendors/jquery-2.0.min.js"></script>
+        <script src="../dev/js/custom/main.js"></script>
+        <script>
+            (function($) {
+                'use strict';
+
+                var $video = $('video');
+                var videoKeyframe = new VideoKeyframe( $video);
+
+                $video.on('canplay', addLabels);
+
+                function addLabels () {
+
+                    videoKeyframe.addLabel( 1, function() {
+                        $('[data-keyframe="0"]').addClass('show');
+                    });
+
+
+                    videoKeyframe.addLabel( 4, function() {
+                        $('[data-keyframe="0"]').removeClass('show');
+                    });
+
+                }
+
+
+            })(jQuery);
+        </script>
+    </body>
+</html>

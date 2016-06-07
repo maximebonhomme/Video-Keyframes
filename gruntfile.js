@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         browserSync: {
             options: {
                 watchTask: true,
-                server: './' + grunt.settings.devDir
+                server: './'
             },
             dev: {
                 bsFiles: {
