@@ -30,7 +30,7 @@ VideoKeyframe.prototype = {
     addLabel: function(time, callback, options) {
         var opts = $.extend( {}, this.settings, options );
         var label = {
-            time: time,
+            time: (opts.fromEnd ? this.duration - time : time),
             callback: callback,
             options: opts
         }
@@ -39,27 +39,6 @@ VideoKeyframe.prototype = {
             console.error('time cannot be greater than duration');
             return;
         }
-
-        this.labels.push(label);
-    },
-
-    addLabelFromEnd: function(time, callback, options) {
-        var _this = this;
-        var opts = $.extend( {}, this.settings, options );
-        var label;
-
-        if(time > this.duration) {
-            console.error('time cannot be greater than duration');
-            return;
-        }
-
-        label = {
-            time: this.duration - time,
-            callback: callback,
-            options: opts
-        }
-
-        if(time === undefined || callback === undefined) return;
 
         this.labels.push(label);
     },

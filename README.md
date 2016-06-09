@@ -31,12 +31,6 @@ adds a label in the timeline
 - callback: `func` function to be called at that point
 - options (optional)
 
-### addLabelFromEnd()
-adds a label from the end of the timeline
-- time: `int` time from the end where you want to put the label
-- callback: `func` function to be called at that point
-- options (optional)
-
 ### getLabel()
 returns label object
 - label: `int` id of the label in the array or `string` label name
@@ -57,6 +51,13 @@ default: `null`
 Pause the video when you reach the label
 ```javascript
 videoKeyframe.addLabel( 2, myFunction, { pause: true } );
+```
+default: `false`
+
+### fromEnd
+adds a label from the end of the timeline
+```javascript
+videoKeyframe.addLabel( 2, myFunction, { fromEnd: true } );
 ```
 default: `false`
 
